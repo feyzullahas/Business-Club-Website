@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Club</title>
+    <style>
+        .social-icons a {
+        font-size: 28px;
+        margin: 0 10px;
+        color: #ffffff; /* siyah-gri ton */
+        transition: 0.3s;
+        }
+
+          .social-icons a:hover {
+          color: #007bff; /* mavi hover */
+         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        #anasayfa {
+         height: 100vh;
+        background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), /* hafif karartma (opsiyonel) */
+        url('logo.jpg'); /* kendi fotoğraf yolun */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 2rem;
+        }
+
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            animation: fadeIn 1.5s;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2a5298;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Departments */
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .department-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .department-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .department-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .department-card h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-avatar {
+         width: 150px;
+         height: 150px;
+         border-radius: 50%;
+         overflow: hidden;
+         margin: 0 auto 1rem;
+         box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .team-avatar img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+        }
+
+
+        .team-card h3 {
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card p {
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Contact */
+       /* .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }*/
+        .contact-content {
+         display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #2a5298;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2a5298;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #667eea;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<body>
+    <!-- Navigation -->
+    <nav>
+
+        <ul>
+            <li><a onclick="scrollToSection('anasayfa')">Ana Sayfa</a></li>
+            <li><a onclick="scrollToSection('hakkimizda')">Hakkımızda</a></li>
+            <li><a onclick="scrollToSection('departmanlar')">Departmanlar</a></li>
+            <li><a onclick="scrollToSection('etkinlikler')">Etkinlikler</a></li>
+            <li><a onclick="scrollToSection('ekip')">Ekibimiz</a></li>
+            <li><a onclick="scrollToSection('iletisim')">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="anasayfa">
+        <div class="hero-content">
+            <h1>Çomü Business Kulübü</h1>
+            <p>Geleceğin Liderlerini Bugünden Yetiştiriyoruz</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Yıllık Tecrübe</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Aktif Üye</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Etkinlik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="hakkimizda">
+        <div class="container">
+            <h2>Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Kulübümüz, 1999 yılında bir grup girişimci öğrenci tarafından kurulmuş ve o günden bu yana 
+                        öğrencilerin akademik, sosyal ve kişisel gelişimlerine katkıda bulunmayı hedeflemiştir.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Üniversitenin en büyük ve prestijli kulüplerinden biri olarak, iş dünyası, kariyer ve sosyal 
+                        sorumluluk projelerinde öncü rol oynuyoruz. Her yıl yüzlerce öğrenciye değerli deneyimler 
+                        kazandırıyor ve onların profesyonel hayata hazırlanmalarına yardımcı oluyoruz.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Mükemmel ekip çalışması, kalite ve yaratıcılık anlayışıyla gerçekleştirdiğimiz projelerimizle 
+                        üniversitemizin ve ülkemizin gururu olmayı sürdürüyoruz.
+                    </p>
+                </div>
+                <div class="about-image">
+                    🎓
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departmanlar">
+        <div class="container">
+            <h2>Departmanlarımız</h2>
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="department-icon">💼</div>
+                    <h3>Kariyer Departmanı</h3>
+                    <p>Şirket ziyaretleri, mülakat simülasyonları ve kariyer etkinlikleri düzenleyerek üyelerimizin iş hayatına hazırlanmalarını sağlıyoruz.</p>
+                </div>
+                <div class="department-card">
+                    <div class="department-icon">🎨</div>
+                    <h3>Grafik & Tasarım</h3>
+                    <p>Kulübün tüm görsel ihtiyaçlarını karşılayan, yaratıcı ve profesyonel tasarımlar üreten departmanımız.</p>
+                </div>
+                <div class="department-card">
+                    <div class="department-icon">📱</div>
+                    <h3>Medya & İletişim</h3>
+                    <p>Sosyal medya yönetimi, içerik üretimi ve dijital pazarlama stratejileri ile kulübün sesini duyuruyoruz.</p>
+                </div>
+                <div class="department-card">
+                    <div class="department-icon">📝</div>
+                    <h3>Editör Departmanı</h3>
+                    <p>Kulüp dergisi, blog yazıları ve tüm yazılı içeriklerin hazırlanmasından sorumlu departmanımız.</p>
+                </div>
+                <div class="department-card">
+                    <div class="department-icon">🤝</div>
+                    <h3>Kurumsal İlişkiler</h3>
+                    <p>Sponsorluk anlaşmaları, şirket işbirlikleri ve dış ilişkiler yönetimini yürütüyoruz.</p>
+                </div>
+                <div class="department-card">
+                    <div class="department-icon">🎯</div>
+                    <h3>Organizasyon</h3>
+                    <p>Etkinlik planlaması, lojistik yönetimi ve operasyonel süreçlerin koordinasyonunu sağlıyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="etkinlikler">
+        <div class="container">
+            <h2>Etkinliklerimiz</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event1.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Kariyer Günleri</h3>
+                        <p>Sektör profesyonelleri ile öğrencileri buluşturan, networking ve iş fırsatları sunan kapsamlı kariyer etkinliğimiz.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event2.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Kulüp Dergisi</h3>
+                        <p>Akademik makaleler, röportajlar ve yazıların yer aldığı düzenli yayınlanan dergimiz.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event3.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Eğitim Programları</h3>
+                        <p>Kişisel gelişim, teknik beceriler ve soft skills konularında düzenlenen eğitim serilerimiz.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event4.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Sosyal Sorumluluk</h3>
+                        <p>Topluma katkı sağlamayı amaçlayan çeşitli sosyal sorumluluk projelerimiz.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event5.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Yarışmalar</h3>
+                        <p>Vaka çalışmaları, iş fikri yarışmaları ve takım çalışması odaklı rekabet etkinliklerimiz.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="images/event6.jpg" alt="Event"></div>
+                    <div class="project-content">
+                        <h3>Sosyal Etkinlikler</h3>
+                        <p>Üyeler arası bağları güçlendiren eğlenceli sosyal aktiviteler ve organizasyonlar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="ekip">
+        <div class="container">
+            <h2>Ekibimiz</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                   <div class="team-avatar">
+                   <img src="images/baskan.jpg" alt="Başkan"></div>
+                    <h3>Kulüp Başkanı</h3>
+                    
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/baskan.jpg" alt=" "></div>
+                    <h3>Başkan Yardımcısı</h3>
+                    
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/baskanyardimcisi.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                    
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/uye1.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                   
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/uye2.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                   
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/uye3.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                    
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/uye4.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                    
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><img src="images/uye5.jpg" alt=""></div>
+                    <h3>Yönetim Kurulu Üyesi</h3>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-content">
+                <div class="contact-info" style="max-width: 600px; margin: 0 auto;">
+                    <h3 style="color: #2a5298; margin-bottom: 2rem; text-align: center;">Bize Ulaşın</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>E-posta</strong><br>
+                            info@kulubumuaz.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>Telefon</strong><br>
+                            +90 (212) 123 45 67
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Adres</strong><br>
+                            Terzioğlu Kampüsü, Çanakkle
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Öğrenci Kulübü. Tüm hakları saklıdır.</p>
+        <div class="social-icons">
+          <a href="https://instagram.com/hesabiniz" target="_blank"><i class="fab fa-instagram"></i></a>
+         <a href="https://linkedin.com/in/hesabiniz" target="_blank"><i class="fab fa-linkedin"></i></a>
+         <a href="https://twitter.com/hesabiniz" target="_blank"><i class="fab fa-twitter"></i></a>
+         <a href="https://facebook.com/hesabiniz" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.department-card, .project-card, .team-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
